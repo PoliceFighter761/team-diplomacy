@@ -12,15 +12,6 @@ function Framework.new()
     return self
 end
 
-function Framework:OnButtonClick(button)
-    if self.OnButtonPressEvents[button] then
-        return self.OnButtonPressEvents[button]
-    else
-        self.OnButtonPressEvents[button] = self.Connection.new()
-        return self.OnButtonPressEvents[button]
-    end
-end
-
 function Framework:GetEvent(event)
     if self.Events[event] then
         return self.Events[event]
