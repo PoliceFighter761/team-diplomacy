@@ -6,7 +6,7 @@ local CoreGui = require("Gui/Core/New")
 Request.Initiate(Framework)
 CoreGui.Initiate(Framework)
 
-local PlayerConnection = Framework:GetEvent("on_player_created"):Connect(function(event)
+local PlayerConnection = Framework:GetEvent("on_player_joined_game"):Connect(function(event)
     local Player = game.get_player(event.player_index)
 
     ------- UI Creation
