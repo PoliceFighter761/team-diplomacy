@@ -16,7 +16,7 @@ local PlayerConnection = Framework:GetEvent("on_player_joined_game"):Connect(fun
     local UiExists = false
 
     pcall(function()
-        if PlayerGui["TeamDiplomacy-Menu"] then
+        if Player.gui.screen["TeamDiplomacy-Menu"] then
             UiExists = true
         end
     end)
