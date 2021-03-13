@@ -121,11 +121,14 @@ function UiUpdateHandler:ViewForce(ForceName, PlayerGui)
 
     local OfflineText = "Offline: "
 
-    for _, player in pairs(ForceStats.MemberCount.Offline) do
-        local sep = ", " 
+    for i, player in pairs(ForceStats.MemberCount.Offline) do
 
+        local sep;
+        
         if i == 1 then
             sep = ""
+        else
+            sep = ", " 
         end
         
         OfflineText = OfflineText .. sep .. player.name
@@ -167,6 +170,9 @@ function UiUpdateHandler:ViewForce(ForceName, PlayerGui)
         end
         if AllyButton.caption == "Send Alliance Request" then
             AllyButton.visible = false
+        end
+        if EnemyButton.caption == "Offer Peace" then
+            EnemyButton.visible = false
         end
     end
 

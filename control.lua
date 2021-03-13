@@ -6,13 +6,7 @@ local CoreGui = require("Gui/Core/New")
 Request.Initiate(Framework)
 CoreGui.Initiate(Framework)
 
-local PlayerConnection = Framework:GetEvent("on_player_joined_game"):Connect(function(event)
-    local Player = game.get_player(event.player_index)
-
-    ------- UI Creation
-
-    local PlayerGui;
-
+function PlayerHasCoreGui(Player)
     local UiExists = false
 
     pcall(function()
@@ -21,7 +15,17 @@ local PlayerConnection = Framework:GetEvent("on_player_joined_game"):Connect(fun
         end
     end)
 
-    if UiExists then
+    return UiExists
+end
+
+local PlayerConnection = Framework:GetEvent("on_player_joined_game"):Connect(function(event)
+    local Player = game.get_player(event.player_index)
+
+    ------- UI Creation
+
+    local PlayerGui;
+
+    if PlayerHasCoreGui(Player) then
         PlayerGui = CoreGui.GetFromExisting(Player.gui)
     else
         PlayerGui = CoreGui.new(Player.gui)
@@ -59,9 +63,11 @@ end)
 
 function UpdateEveryonesForceLists()
     for _, Player in pairs(game.players) do
-        local PlayerGui = CoreGui.GetFromExisting(Player.gui)
+        if PlayerHasCoreGui(Player) then
+            local PlayerGui = CoreGui.GetFromExisting(Player.gui)
 
-        PlayerGui.Update.ForceList(PlayerGui.ForceList)
+            PlayerGui.Update.ForceList(PlayerGui.ForceList)
+        end
     end
 end
 
