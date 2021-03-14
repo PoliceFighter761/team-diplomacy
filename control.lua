@@ -124,7 +124,7 @@ Framework:GetEvent("on_gui_click"):Connect(function(event)
             IsInList = true
         end
     end)
-    
+
     ------- UI Toggle
 
 
@@ -151,7 +151,7 @@ Framework:GetEvent("on_gui_click"):Connect(function(event)
         CreateFactionButton.style = "button"
 
 
-    ------- Faction Button Logic
+    ------- Create Faction Button Logic
 
 
     elseif Element == CreateFactionButton and CreateFactionButton.style.name == "button" then  

@@ -79,6 +79,9 @@ return function(PlayerGui)
         }
     )
 
+    Create.style.minimal_width = 300
+    Create_Name.style.minimal_width = 300
+
     -- DETAIL MODE
 
     local Detail = MainFlow.add(

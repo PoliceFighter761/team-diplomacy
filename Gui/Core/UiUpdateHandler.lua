@@ -188,6 +188,9 @@ function UiUpdateHandler.ForceList(List)
 
     local PlayerForce = game.players[List.player_index].force
 
+    local names = {}
+    local longest = 0
+
     for _, Faction in pairs(game.forces) do
         if Faction.name ~= "enemy" and Faction.name ~= "neutral" then
             local temp = List.add(
@@ -204,7 +207,16 @@ function UiUpdateHandler.ForceList(List)
             elseif not(PlayerForce.get_cease_fire(Faction)) then
                 temp.style.font_color = {r = 1, g = 0, b = 0}
             end
+
+            longest = math.max(longest, Framework:GetTextSize(Faction.name, 8))
+        
+            names[#names + 1] = temp
         end
+    end
+
+    for _, button in pairs(names) do
+        button.style.minimal_width = longest
+        button.style.maximal_width = longest
     end
 end
 

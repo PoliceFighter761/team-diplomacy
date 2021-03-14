@@ -8,6 +8,7 @@ function Framework.new()
     self.Connection = require("connection")
 
     self.Forces = require("forces")
+    self._TextSizeModule = require("textsize")
 
     return self
 end
@@ -25,6 +26,10 @@ function Framework:GetEvent(event)
         self.Events[event] = Connection
         return self.Events[event]
     end
+end
+
+function Framework:GetTextSize(...)
+    return self._TextSizeModule(...)
 end
 
 return Framework.new()
